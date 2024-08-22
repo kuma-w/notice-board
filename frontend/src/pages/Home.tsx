@@ -2,9 +2,10 @@ import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import Board from "../components/Board";
 import { API_BOARD } from "../constants";
+import Header from "../layout/Header";
 import { Post } from "../types";
 
-const Main = () => {
+const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -28,14 +29,11 @@ const Main = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   return (
     <>
+      <Header />
       <Box sx={{ display: "flex", justifyContent: "center", my: "10rem" }}>
         <Board posts={posts} />
       </Box>
@@ -43,4 +41,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Home;

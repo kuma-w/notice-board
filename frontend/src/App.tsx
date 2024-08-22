@@ -1,25 +1,13 @@
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Header from "./layout/Header";
-import Main from "./layout/Main";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2",
-    },
-    secondary: {
-      main: "#dc004e",
-    },
-  },
-});
+import { ThemeProvider } from "@mui/material/styles";
+import AppRouter from "./routes/AppRouter";
+import { theme } from "./style/theme";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header />
-      <Main />
+      <AppRouter />
     </ThemeProvider>
   );
 }

@@ -9,13 +9,12 @@ const app = express();
 
 app.set("port", process.env.PORT || 4000);
 
-// PostgreSQL 클라이언트 설정 (환경 변수나 하드코딩된 값을 사용할 수 있음)
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
   database: "mydb",
   password: "0423",
-  port: 5432, // PostgreSQL의 기본 포트
+  port: 5432,
 });
 
 app.use(cors());
