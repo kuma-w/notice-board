@@ -9,7 +9,8 @@ import {
   TableRow,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import { Link, useNavigate } from "react-router-dom";
 import { Post } from "../types";
 
 interface Iprops {
@@ -37,29 +38,35 @@ const Board = ({ posts }: Iprops) => {
               <TableHead>
                 <TableRow>
                   <TableCell width={5}>No.</TableCell>
-                  <TableCell width={30}>제목</TableCell>
-                  <TableCell width={10}>작성자</TableCell>
-                  <TableCell width={10}>작성일</TableCell>
-                  <TableCell width={10}>조회수</TableCell>
+                  <TableCell width={300}>제목</TableCell>
+                  <TableCell width={5}>작성자</TableCell>
+                  <TableCell width={5}>작성일</TableCell>
+                  <TableCell width={5}>조회수</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {posts.map((post) => {
-                  const isoDateString = post.insert_time;
-                  let dateOnly;
-                  if (isoDateString) {
-                    const date = new Date(isoDateString);
-                    dateOnly = date.toISOString().split("T")[0];
-                  } else {
-                    dateOnly = "";
-                  }
+                  // const isoDateString = post.insert_time;
+                  // let dateOnly;
+                  // if (isoDateString) {
+                  //   const date = new Date(isoDateString);
+                  //   dateOnly = date.toISOString().split("T")[0];
+                  // } else {
+                  //   dateOnly = "";
+                  // }
 
                   return (
                     <TableRow key={post.idx}>
                       <TableCell>{post.idx}</TableCell>
-                      <TableCell>{post.title}</TableCell>
+                      <TableCell>
+                        <Link to={`/board/write?idx=${post.idx}`}>
+                          {post.title}
+                        </Link>
+                      </TableCell>
                       <TableCell>{post.writer}</TableCell>
-                      <TableCell>{dateOnly}</TableCell>
+                      <TableCell>
+                        {moment(post.insert_time).format("YYYY-MM-DD")}
+                      </TableCell>
                       <TableCell>{post.view_cnt}</TableCell>
                     </TableRow>
                   );

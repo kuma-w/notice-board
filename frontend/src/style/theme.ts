@@ -22,5 +22,22 @@ export const theme = createTheme({
       fontSize: "1.25rem",
       fontWeight: 500,
     },
+    body1: {
+      padding: "16px",
+      fontSize: "0.75rem",
+      lineHeight: 1.43,
+      fontWeight: 400,
+    },
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiInputBase-root": {
+            // padding: 0,
+          },
+        },
+      },
+    },
   },
 });

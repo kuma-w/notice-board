@@ -1,6 +1,19 @@
-import { Box, Paper, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import moment from "moment";
+import { Post } from "../types";
 
-const PostEditor = () => {
+interface Iprops {
+  post?: Post;
+}
+
+const PostEditor = ({ post }: Iprops) => {
   return (
     <>
       <Box
@@ -12,14 +25,55 @@ const PostEditor = () => {
         }}
       >
         <Paper>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="h4">제목</Typography>
-            <TextField />
+          <Box sx={{ display: "flex", alignItems: "center", m: 2 }}>
+            <Grid container direction="column">
+              <Grid container>
+                <Grid item xs={2}>
+                  <Typography variant="body1">제목</Typography>
+                </Grid>
+                <Grid item xs={10}>
+                  <TextField fullWidth id="vehicle" type="text" size="small" />
+                </Grid>
+              </Grid>
+              <Divider />
+              <Grid container>
+                <Grid item xs={2}>
+                  <Typography variant="body1">작성자</Typography>
+                </Grid>
+                <Grid item xs={10}>
+                  <Typography variant="body1">{post?.writer}</Typography>
+                </Grid>
+              </Grid>
+              <Divider />
+              <Grid container>
+                <Grid item xs={2}>
+                  <Typography variant="body1">등록일시</Typography>
+                </Grid>
+                <Grid item xs={10}>
+                  <Typography variant="body1">
+                    {moment(post?.insert_time).format("YYYY-MM-DD HH:mm:ss")}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Divider />
+              <Grid container>
+                <Grid item xs={2}>
+                  <Typography variant="body1">내용</Typography>
+                </Grid>
+                <Grid item xs={10}>
+                  <TextField
+                    fullWidth
+                    id="vehicle"
+                    type="text"
+                    size="small"
+                    multiline
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="h4">작성자</Typography>
-            <Typography variant="h5">작성자</Typography>
-          </Box>
+
+          {/* <Divider /> */}
         </Paper>
       </Box>
     </>
